@@ -1,0 +1,342 @@
+/* ==============================
+   Handnotes Plugin — Styles
+   ============================== */
+
+/* ----- View Layout ----- */
+.handnotes-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.handnotes-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 4px 8px;
+  gap: 8px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  flex-shrink: 0;
+  min-height: 36px;
+}
+
+.handnotes-canvas-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: var(--background-primary);
+}
+
+.handnotes-toolbar-container {
+  position: absolute;
+  left: 0;
+  top: 36px;
+  bottom: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.handnotes-toolbar-container > * {
+  pointer-events: auto;
+}
+
+/* ----- Toolbar ----- */
+.handnotes-toolbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 4px;
+  background: var(--background-secondary-alt);
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid var(--background-modifier-border);
+  box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+  position: relative;
+  width: 42px;
+}
+
+.handnotes-tb-collapsed {
+  transform: translateX(-38px);
+}
+
+.handnotes-tb-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  color: var(--text-muted);
+  width: 32px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.handnotes-tb-toggle:hover {
+  color: var(--text-normal);
+}
+
+.handnotes-tb-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.handnotes-tb-btn {
+  background: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  padding: 6px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: var(--text-muted);
+  transition: background 0.15s, color 0.15s;
+}
+
+.handnotes-tb-btn:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.handnotes-tb-btn.is-active {
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  border-color: var(--interactive-accent);
+}
+
+.handnotes-tb-spacer {
+  height: 1px;
+  background: var(--background-modifier-border);
+  margin: 4px 0;
+  width: 100%;
+}
+
+/* ----- Tool Popup ----- */
+.handnotes-tb-popup {
+  position: absolute;
+  left: 46px;
+  top: 4px;
+  background: var(--background-primary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  padding: 12px;
+  z-index: 100;
+  min-width: 240px;
+  max-width: 300px;
+}
+
+.handnotes-popup-section {
+  margin-bottom: 10px;
+}
+
+.handnotes-popup-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.handnotes-popup-color-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.handnotes-popup-hue canvas {
+  border-radius: 4px;
+  cursor: pointer;
+  width: 200px;
+  height: 16px;
+}
+
+.handnotes-popup-sat-light canvas {
+  border-radius: 4px;
+  cursor: pointer;
+  width: 180px;
+  height: 150px;
+}
+
+.handnotes-popup-preview canvas {
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+}
+
+.handnotes-popup-swatches {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.handnotes-popup-swatch {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border: 1px solid var(--background-modifier-border);
+  cursor: pointer;
+  padding: 0;
+}
+
+.handnotes-popup-swatch:hover {
+  border-color: var(--interactive-accent);
+}
+
+.handnotes-popup-slider {
+  width: 100%;
+  margin: 4px 0;
+}
+
+.handnotes-popup-section canvas:not(.handnotes-popup-preview canvas):not(.handnotes-popup-hue canvas):not(.handnotes-popup-sat-light canvas) {
+  border-radius: 4px;
+  margin-top: 4px;
+  width: 100%;
+  height: 20px;
+}
+
+/* ----- Layout Picker ----- */
+.handnotes-layout-picker {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.handnotes-layout-select {
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 12px;
+  color: var(--text-normal);
+  cursor: pointer;
+}
+
+.handnotes-layout-select:hover {
+  border-color: var(--interactive-accent);
+}
+
+/* ----- Embed ----- */
+.handnotes-embed {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 8px 0;
+  background: var(--background-primary);
+  position: relative;
+}
+
+.handnotes-embed-canvas {
+  width: 100%;
+  min-height: 300px;
+  position: relative;
+}
+
+.handnotes-embed-error {
+  padding: 16px;
+  color: var(--text-error);
+  font-style: italic;
+  font-size: 13px;
+}
+
+/* ----- Settings: Pressure Curve ----- */
+.handnotes-curve-editor {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 12px 0;
+}
+
+.handnotes-curve-graph-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.handnotes-curve-graph-section h3,
+.handnotes-curve-test-section h3 {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-normal);
+}
+
+.handnotes-curve-canvas {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  cursor: crosshair;
+  width: 300px;
+  height: 300px;
+}
+
+.handnotes-curve-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.handnotes-curve-test-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.handnotes-curve-test-canvas {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  cursor: crosshair;
+  touch-action: none;
+  width: 200px;
+  height: 200px;
+}
+
+.handnotes-settings-curve {
+  margin-bottom: 12px;
+}
+
+/* ----- Canvas Cursors ----- */
+.handnotes-canvas-container canvas {
+  cursor: crosshair;
+}
+
+/* When pan tool is active */
+.handnotes-tb-btn.is-active[data-tool="pan"] ~ .handnotes-canvas-container canvas {
+  cursor: grab;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .handnotes-toolbar {
+    width: 36px;
+    padding: 4px 2px;
+  }
+  .handnotes-tb-btn {
+    width: 28px;
+    height: 28px;
+    padding: 4px;
+  }
+  .handnotes-tb-popup {
+    left: 40px;
+    min-width: 200px;
+  }
+  .handnotes-curve-editor {
+    flex-direction: column;
+  }
+}
+
+/* Obsidian theme overrides */
+.theme-dark .handnotes-curve-test-canvas {
+  border-color: var(--background-modifier-border);
+}
+
+.theme-light .handnotes-curve-test-canvas {
+  border-color: var(--background-modifier-border);
+}

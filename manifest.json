@@ -1,0 +1,9 @@
+{
+  "id": "handnotes",
+  "name": "Handnotes",
+  "version": "0.1.0",
+  "minAppVersion": "1.4.0",
+  "description": "Handwriting and sketching with Apple Pencil and stylus, embedded in your notes.",
+  "author": "you",
+  "isDesktopOnly": false
+}
