@@ -18,6 +18,7 @@ export class HandnotesView extends ItemView {
   private toolbarEl!: HTMLElement;
   private canvasContainer!: HTMLElement;
   private topBarEl!: HTMLElement;
+  private resizeObserver: ResizeObserver | null = null;
 
   constructor(leaf: WorkspaceLeaf, app: App, settings: PluginSettings) {
     super(leaf);
@@ -79,6 +80,11 @@ export class HandnotesView extends ItemView {
       await this.loadFile(this.filePath);
     }
 
+    this.resizeObserver = new ResizeObserver(() => {
+      this.canvas?.onResize();
+    });
+    this.resizeObserver.observe(this.canvasContainer);
+
     this.registerEvent(
       this.app.workspace.on('layout-change', () => {
         this.canvas?.onResize();
@@ -96,6 +102,7 @@ export class HandnotesView extends ItemView {
       this.saveTimer = null;
     }
     await this.saveFile();
+    this.resizeObserver?.disconnect();
     this.canvas?.destroy();
   }
 

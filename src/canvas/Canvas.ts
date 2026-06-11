@@ -89,6 +89,7 @@ export class HandwritingCanvas {
 
     this.initNoisePattern();
     this.setupEvents();
+    this.ensureCanvasSize();
   }
 
   private setupEvents(): void {
@@ -101,7 +102,7 @@ export class HandwritingCanvas {
   }
 
   onResize(): void {
-    this.rebuildCommittedCanvas();
+    this.ensureCanvasSize();
     this.scheduleRender();
   }
 
@@ -244,13 +245,15 @@ export class HandwritingCanvas {
       return;
     }
 
+    if (this.rawPoints.length >= 5000) return;
+
     if (this.rawPoints.length > 0) {
       const last = this.rawPoints[this.rawPoints.length - 1];
       const dx = pt.x - last.x;
       const dy = pt.y - last.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      if (dist < 0.3) return;
+      if (dist < 0.5) return;
 
       if (this.rawPoints.length >= 2) {
         const prev = this.rawPoints[this.rawPoints.length - 2];
@@ -260,14 +263,8 @@ export class HandwritingCanvas {
           this.scheduleRender();
           return;
         }
-        if (dist < 1.0) {
-          const dt = pt.t - last.t;
-          if (dt < 12) return;
-        }
       }
     }
-
-    if (this.rawPoints.length >= 5000) return;
 
     this.rawPoints.push(pt);
     this.scheduleRender();
